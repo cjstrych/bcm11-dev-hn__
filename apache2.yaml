@@ -1,9 +1,10 @@
 ---
-- name: Apache HTTP Server Configuration Files
+- name: Apache HTTP Server Configuration File(s) Synchronization
   hosts: all
   become: yes
   
   tasks:
+  ######## /etc/apache2/ports.conf
     - name: /etc/apache2/ports.conf
       copy:
         src: files/ports.conf
@@ -12,7 +13,18 @@
         group: root
         mode: '0644'
 
+    - name: Calculate md5sum /etc/apache2/ports.conf
+      shell: |
+          /usr/bin/md5sum /etc/apache2/ports.conf
+      register: md5sum_output
 
+    - name: Display md5sum /etc/apache2/ports.conf
+      debug:
+        msg: "{{ md5sum_output.stdout }}"
+###############################################################################
+
+
+######## /etc/apache2/conf-available/api.conf
     - name: /etc/apache2/conf-available/api.conf
       copy:
         src: files/api.conf
@@ -21,7 +33,18 @@
         group: root
         mode: '0644'
 
+    - name: Calculate md5sum /etc/apache2/conf-available/api.conf
+      shell: |
+          /usr/bin/md5sum /etc/apache2/conf-available/api.conf
+      register: md5sum_output
 
+    - name: Display md5sum /etc/apache2/conf-available/api.conf
+      debug:
+        msg: "{{ md5sum_output.stdout }}"
+###############################################################################
+
+
+######## /etc/apache2/conf-available/base-view.conf
     - name: /etc/apache2/conf-available/base-view.conf
       copy:
         src: files/base-view.conf
@@ -29,6 +52,16 @@
         owner: root
         group: root
         mode: '0644'
+
+    - name: Calculate md5sum /etc/apache2/conf-available/base-view.conf
+      shell: |
+          /usr/bin/md5sum /etc/apache2/conf-available/base-view.conf
+      register: md5sum_output
+
+    - name: Display md5sum /etc/apache2/conf-available/base-view.conf
+      debug:
+        msg: "{{ md5sum_output.stdout }}"
+###############################################################################
 
 
 ######## /etc/apache2/conf-available/userportal.conf
@@ -39,7 +72,7 @@
         owner: root
         group: root
         mode: '0644'
-        
+
     - name: Calculate md5sum /etc/apache2/conf-available/userportal.conf
       shell: |
           /usr/bin/md5sum /etc/apache2/conf-available/userportal.conf
@@ -48,7 +81,6 @@
     - name: Display md5sum /etc/apache2/conf-available/userportal.conf
       debug:
         msg: "{{ md5sum_output.stdout }}"
-
 ###############################################################################
 
 
@@ -69,7 +101,6 @@
     - name: Display md5sum /etc/apache2/sites-available/000-default.conf
       debug:
         msg: "{{ md5sum_output.stdout }}"
-
 ###############################################################################
 
 
@@ -90,7 +121,10 @@
     - name: Display md5sum /etc/apache2/sites-available/default-ssl.conf
       debug:
         msg: "{{ md5sum_output.stdout }}"
+###############################################################################
 
+###############################################################################
+######## End of Configuration File(s) Synchronization
 ###############################################################################
 
     - name: Test and Reload Apache
