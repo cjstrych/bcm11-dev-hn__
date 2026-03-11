@@ -1,0 +1,11 @@
+- name: Ansible Ping
+  hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+   - name: Ansible Ping
+     ansible.builtin.ping:
+
+   - name: Print Message
+     ansible.builtin.debug:
+       msg: "Hello, Ansible."
