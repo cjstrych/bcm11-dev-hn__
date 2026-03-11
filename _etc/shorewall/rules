@@ -23,7 +23,8 @@ ACCEPT	        net	        fw	        icmp	8
 ACCEPT:info   net            fw              tcp     22
 
 # -- Allow cluster management traffic from outside
-ACCEPT   net            fw              tcp     8081
+#ACCEPT   net            fw              tcp     8081
+ACCEPT   net:10.141.0.0/16            fw              tcp     8081
 
 # -- Allow NFS traffic from outside to the master
 #ACCEPT   net            fw              tcp     111   # portmapper
