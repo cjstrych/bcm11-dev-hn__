@@ -143,12 +143,11 @@
         msg: "{{ md5sum_output.stdout }}"
 ###############################################################################
 
-
 ###############################################################################
 ######## End of Configuration File(s) Synchronization
 ###############################################################################
 
+
     - name: Test and Reload Apache
       shell: |
         /usr/sbin/apache2ctl configtest && /usr/bin/systemctl reload apache2.service
-
