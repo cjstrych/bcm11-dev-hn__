@@ -55,6 +55,11 @@
     - name: md5sum /etc/apache2/sites-available/default-ssl.conf
       shell: |
           /usr/bin/md5sum /etc/apache2/sites-available/default-ssl.conf
+      register: md5sum_output
+
+    - name: Display md5sum
+      debug:
+        msg: "{{ md5sum_output.stdout }}"
 
     - name: Test and Reload Apache
       shell: |
