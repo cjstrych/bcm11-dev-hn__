@@ -2,12 +2,12 @@
 - name: Apache HTTP Server Configuration File(s) Synchronization
   hosts: all
   become: yes
-  
+
   tasks:
   ######## /etc/apache2/ports.conf
     - name: /etc/apache2/ports.conf
       copy:
-        src: files/ports.conf
+        src: _etc/apache2/ports.conf
         dest: /etc/apache2/ports.conf
         owner: root
         group: root
@@ -27,7 +27,7 @@
 ######## /etc/apache2/conf-available/api.conf
     - name: /etc/apache2/conf-available/api.conf
       copy:
-        src: files/api.conf
+        src: _etc/apache2/conf-available/api.conf
         dest: /etc/apache2/conf-available/api.conf
         owner: root
         group: root
@@ -47,7 +47,7 @@
 ######## /etc/apache2/conf-available/base-view.conf
     - name: /etc/apache2/conf-available/base-view.conf
       copy:
-        src: files/base-view.conf
+        src: _etc/apache2/conf-available/base-view.conf
         dest: /etc/apache2/conf-available/base-view.conf
         owner: root
         group: root
@@ -67,7 +67,7 @@
 ######## /etc/apache2/conf-available/userportal.conf
     - name: /etc/apache2/conf-available/userportal.conf
       copy:
-        src: files/userportal.conf
+        src: _etc/apache2/conf-available/userportal.conf
         dest: /etc/apache2/conf-available/userportal.conf
         owner: root
         group: root
@@ -87,7 +87,7 @@
 ######## /etc/apache2/sites-available/000-default.conf
     - name: /etc/apache2/sites-available/000-default.conf
       copy:
-        src: files/000-default.conf
+        src: _etc/apache2/sites-available/000-default.conf
         dest: /etc/apache2/sites-available/000-default.conf
         owner: root
         group: root
@@ -107,7 +107,7 @@
 ######## /etc/apache2/sites-available/default-ssl.conf
     - name: /etc/apache2/sites-available/default-ssl.conf
       copy:
-        src: files/default-ssl.conf
+        src: _etc/apache2/sites-available/default-ssl.conf
         dest: /etc/apache2/sites-available/default-ssl.conf
         owner: root
         group: root
@@ -130,3 +130,4 @@
     - name: Test and Reload Apache
       shell: |
         /usr/sbin/apache2ctl configtest && /usr/bin/systemctl reload apache2.service
+
