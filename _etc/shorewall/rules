@@ -51,7 +51,7 @@ ACCEPT   net            fw              tcp     80
 ACCEPT   net            fw              tcp     443
 ACCEPT   net            fw              tcp     20443
 
-# -- Serve HAProxy
+# -- HAProxy Ingress
 ACCEPT   net            fw              tcp     30080
 ACCEPT   net            fw              tcp     30443
 
