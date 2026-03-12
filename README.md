@@ -1,4 +1,4 @@
-# develop-cluster
+# develop-cluster GitOps
 
 ### Apache HTTP Server Configuration
 ##### <code>$ ansible-playbook apache2.yaml</code>
